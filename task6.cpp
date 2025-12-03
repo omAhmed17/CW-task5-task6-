@@ -1,10 +1,15 @@
-﻿#include <iostream>
+#include <iostream>
+#include <cstdlib>  
+#include <ctime>   
 using namespace std;
 
+
+
 int weight(int left, int right) {
-    if (left > right) return 1;
-    if (left < right) return -1;
-    return 0;
+    int random = rand() % 3;  
+    if (random == 0) return 0;
+    if (random == 1) return 1;
+    return -1;
 }
 
 string faketype(int A, int B, int C) {
