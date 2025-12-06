@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int weight(int left, int right) {
+    if (left > right) return 1;
+    if (left < right) return -1;
+    return 0;
+}
+
+string findFakeCoin(vector<int> coins) {
+    if (coins.size() < 2) return "Not enough coins";
+
+    int w = weight(coins[0], coins[1]);
+
+    if (w == 0) {
+        for (int i = 2; i < coins.size(); i++) {
+            int wi = weight(coins[i], coins[0]);
+            if (wi != 0) {
+                if (wi == 1)
+                    return "Fake coin is coin " + to_string(i) + " and it is heavier";
+                else
+                    return "Fake coin is coin " + to_string(i) + " and it is lighter";
+            }
+        }
+        return "All coins are the same";
+    }
+    else {
+        int w2 = weight(coins[0], coins[2]);
+        if (w2 == 0) {
+            if (w == 1)
+                return "Fake coin is coin 1 and it is lighter";
+            else
+                return "Fake coin is coin 1 and it is heavier";
+        }
+        else {
+            if (w2 == 1)
+                return "Fake coin is coin 0 and it is heavier";
+            else
+                return "Fake coin is coin 0 and it is lighter";
+        }
+    }
+}
+
+int main() {
+    vector<int> coins1 = { 14, 10, 10, 10, 10, 10 };
+    vector<int> coins2 = { 10, 10, 10, 10, 14, 10 };
+
+    cout << findFakeCoin(coins1) << endl;
+    cout << findFakeCoin(coins2) << endl;
+
+    return 0;
+}
