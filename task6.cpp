@@ -6,12 +6,10 @@ using namespace std;
 
 
 int weight(int left, int right) {
-    int random = rand() % 3;  
-    if (random == 0) return 0;
-    if (random == 1) return 1;
-    return -1;
+    if (left > right) return 1;
+    if (left < right) return -1;
+    return 0;
 }
-
 string faketype(int A, int B, int C) {
 
     int w1 = weight(A, B);
@@ -53,3 +51,4 @@ int main() {
 
     return 0;
 }
+
